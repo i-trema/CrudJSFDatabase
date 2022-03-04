@@ -12,8 +12,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -26,6 +28,8 @@ public class Formation {
    private String description;
    private double prix;
    private String titre;
+       private Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+
 
     public Formation(String description, double prix, String titre) {
         this.description = description;
@@ -171,6 +175,28 @@ public class Formation {
     }
     
     
+    }
+    
+    public String edit(int id){
+        Formation form = null;
+        System.out.println(id);
+        try{
+            connection = getConnection();
+            Statement stmt=getConnection().createStatement();  
+            ResultSet rs=stmt.executeQuery("select * from formation where id = "+(id));
+            rs.next();
+            form = new Formation();
+            form.setId(rs.getInt("id"));
+            form.setTitre(rs.getString("titre"));
+            form.setDescription(rs.getString("description"));
+            form.setPrix(rs.getDouble("prix"));
+            
+            sessionMap.put("editFormation", form);
+            connection.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }       
+        return "editFormation.xhtml?faces-redirect=true";
     }
     
     
