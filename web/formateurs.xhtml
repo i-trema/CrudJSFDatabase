@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Formateurs</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></link>
+    </h:head>
+    <h:body>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.xhtml">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="formateurs.xhtml">Formateurs</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="formations.xhtml">Formations</a>
+        </li>
+        
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+     
+       <div class="container">
+  <div class="row">
+
+    <div class="col">
+            <div class="mb-3 text-center">
+                <h1>Formateurs</h1>
+  
+</div>
+          <h:form>
+<div class="mb-3">
+          <h:outputLabel value="nom" for="exampleFormControlInput1" class="form-label"></h:outputLabel>
+          <h:inputText class="form-control" id="exampleFormControlInput1"  value="#{formateur.nom}" validatorMessage="Le nom doit comporter des lettres." required="true" requiredMessage="Nom requis">
+              <f:validateRegex pattern="[A-Za-z ]{1,25}"></f:validateRegex>
+          </h:inputText>
+          
+          
+  
+</div>
+        <div class="mb-3">
+          <h:outputLabel value="prenom" for="exampleFormControlInput4" class="form-label"></h:outputLabel>
+          <h:inputText class="form-control" id="exampleFormControlInput4"  value="#{formateur.prenom}" validatorMessage="Le prénom doit comporter des lettres." required="true" requiredMessage="Prénom requis">
+              <f:validateRegex pattern="[A-Za-z ]{1,25}"></f:validateRegex>
+          </h:inputText>
+  
+</div>
+               <div class="mb-3">
+          <h:outputLabel value="email" for="exampleFormControlInput2" class="form-label"></h:outputLabel>
+          <h:inputText class="form-control" id="exampleFormControlInput2"  value="#{formateur.email}" validatorMessage="L'email comporte une erreur." required="true" requiredMessage="Email requis">
+              <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>              
+          </h:inputText>
+  
+</div>
+               <div class="mb-3">
+          <h:outputLabel value="mot de passe" for="exampleFormControlInput3" class="form-label"></h:outputLabel>
+          <h:inputSecret class="form-control" id="exampleFormControlInput3"  value="#{formateur.mdp}" validatorMessage="Le mot de passe comporte une erreur." required="true" requiredMessage="Mot de passe requis">
+          
+          </h:inputSecret>
+  
+</div>
+               <div class="mb-3">
+          <h:outputLabel value="age" for="exampleFormControlInput5" class="form-label"></h:outputLabel>
+          <h:inputText class="form-control" id="exampleFormControlInput5"  value="#{formateur.age}" validatorMessage="L'âge doit être supérieur à 16.">
+              <f:validateDoubleRange minimum="16"></f:validateDoubleRange>
+          </h:inputText>
+  
+</div>
+               <div class="mb-3">
+          <h:outputLabel value="recrutement" for="exampleFormControlInput6" class="form-label"></h:outputLabel>
+          <h:inputText class="form-control" id="exampleFormControlInput6"  value="#{formateur.recrutement}">
+              <f:validateDoubleRange minimum="1950" maximum="2022"></f:validateDoubleRange>
+
+          </h:inputText>
+  
+</div>
+               <div class="mb-3">
+          <h:outputLabel value="grade"  class="form-label"></h:outputLabel>
+          <h:selectOneRadio value="#{formateur.grade}">
+              <f:selectItem itemLabel="junior" itemValue="junior"></f:selectItem>
+              <f:selectItem itemLabel="sénior" itemValue="sénior"></f:selectItem>
+          </h:selectOneRadio>
+  
+</div>
+         <div class="mb-3">
+          <h:outputLabel value="tel" for="exampleFormControlInput8" class="form-label"></h:outputLabel>
+          <h:inputText class="form-control" id="exampleFormControlInput8"  value="#{formateur.tel}"></h:inputText>
+      <div class="mb-3 text-center">
+          <h:commandButton  class="btn btn-primary" action="#{formateur.ajouterFormateur()}" value="envoyer"></h:commandButton>
+  
+</div>
+</div>
+                 </h:form>  
+    </div>
+    <div class="col">
+      
+    
+ 
+
+        <h:form>
+           <h:dataTable class="table table-bordered" value="#{formateur.showList()}" var="lf">
+               <h:column>
+                   <f:facet name="header">nom</f:facet>
+                   <h:outputText value="#{lf.nom}"></h:outputText>
+               </h:column>
+                 <h:column>
+                   <f:facet name="header">prenom</f:facet>
+                   <h:outputText value="#{lf.prenom}"></h:outputText>
+               </h:column>
+               
+                 <h:column>
+                   <f:facet name="header">Email</f:facet>
+                   <h:outputText value="#{lf.email}"></h:outputText>
+               </h:column>
+                 <h:column>
+                   <f:facet name="header">age</f:facet>
+                   <h:outputText value="#{lf.age}"></h:outputText>
+               </h:column>
+                 <h:column>
+                   <f:facet name="header">Grade</f:facet>
+                   <h:outputText value="#{lf.grade}"></h:outputText>
+               </h:column>
+                 <h:column>
+                   <f:facet name="header">Année de recrutement</f:facet>
+                   <h:outputText value="#{lf.recrutement}"></h:outputText>
+               </h:column>
+                 <h:column>
+                   <f:facet name="header">Téléphone</f:facet>
+                   <h:outputText value="#{lf.tel}"></h:outputText>
+               </h:column>
+                <h:column>
+                   <f:facet name="header">supprimer</f:facet>
+                   <h:commandButton value="supprimer" class="btn btn-danger" action="#{formateur.deleteFormateur(lf.id)}"></h:commandButton>
+               </h:column>
+           </h:dataTable>
+        </h:form>
+           
+            </div>
+  </div>
+       </div>
+    </h:body>
+</html>
+
