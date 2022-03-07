@@ -39,32 +39,38 @@
         <h:form id="form" class="form-horizontal">
             <div class="form-group">
                 <div class="col-sm-2"></div>
-                <h2 style="text-align: center" class="col-sm-4">Edit Your Record</h2>
+                <h2 style="text-align: center" class="col-sm-4">Modifier une formation</h2>
             </div>
             <hr/>
             <div class="form-group">
+                <h:outputLabel for="id" class="control-label col-sm-2">ID</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:outputText id="id-id" value="#{editFormation.id}" class="form-control"/>
+                </div>
+            </div>    
+            <div class="form-group">
                 <h:outputLabel for="titre" class="control-label col-sm-2">Titre</h:outputLabel>
                 <div class="col-sm-4">
-                    <h:inputText id="titre-id" value="#{formation.titre}" class="form-control"/>
+                    <h:inputText id="titre-id" value="#{editFormation.titre}" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
                 <h:outputLabel for="description" class="control-label col-sm-2">Description</h:outputLabel>
                 <div class="col-sm-4">
-                    <h:inputText id="desc-id" value="#{formation.description}" class="form-control"/>
+                    <h:inputText id="desc-id" value="#{editFormation.description}" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
                 <h:outputLabel for="prix" class="control-label col-sm-2">Prix</h:outputLabel>
                 <div class="col-sm-4">
-                    <h:inputText id="prix-id" value="#{formation.prix}" class="form-control"/>
+                    <h:inputText id="prix-id" value="#{editFormation.prix}" class="form-control"/>
                 </div>
             </div>
             
             <div class="form-group">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">
-                    <center><h:commandButton value="Update" action="#{formation.edit(editFormation)}" class="btn btn-primary" style="width: 80px;"></h:commandButton></center>
+                    <center><h:commandButton value="Update" action="#{formation.updateFormation(editFormation)}" class="btn btn-primary" style="width: 80px;"></h:commandButton></center>
                 </div>
             </div>
         </h:form>

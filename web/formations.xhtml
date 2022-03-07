@@ -99,11 +99,11 @@
                    <f:facet name="header">supprimer</f:facet>
                    <h:commandButton value="supprimer" class="btn btn-danger" action="#{formation.deleteFormation(lfo.id)}"></h:commandButton>
                </h:column>
-<!--               <h:column> 
+               <h:column> 
                     <f:facet name="header">modifier</f:facet>
-                    <h:commandButton action = "#{formation.edit(lfo.id)}" value="Update" class="btn btn-primary"> 
+                    <h:commandButton action = "#{formation.modifFormation(lfo.id)}" value="Update" class="btn btn-primary"> 
                     </h:commandButton>
-                </h:column>-->
+                </h:column>
            </h:dataTable>
         </h:form>
     </div>

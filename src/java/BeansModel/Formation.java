@@ -160,24 +160,10 @@ public class Formation {
         else return "index.xhtml?faces-redirect=true";
     
     }
-    public void deleteFormation(int id)
-    {
-    try
-    {
-    connection = getConnection();  
-            PreparedStatement stmt = connection.prepareStatement("delete from formation where id = "+id);  
-            stmt.executeUpdate();  
-    }
-    catch(Exception ex)
-    {
-        System.out.println(ex);
     
-    }
-    
-    
-    }
-    
-    public String edit(int id){
+        // Used to fetch record to update
+
+    public String modifFormation(int id){
         Formation form = null;
         System.out.println(id);
         try{
@@ -199,5 +185,40 @@ public class Formation {
         return "editFormation.xhtml?faces-redirect=true";
     }
     
+    // Used to update user record
+    public String updateFormation(Formation f){
+        //int result = 0;
+        try{
+            connection = getConnection();  
+            PreparedStatement stmt=connection.prepareStatement("update formation set titre=?,description=?,prix=? where id=?");  
+            stmt.setString(1,f.getTitre());  
+            stmt.setString(2,f.getDescription());  
+            stmt.setDouble(3,f.getPrix());  
+            stmt.setInt(4,f.getId());  
+            
+            stmt.executeUpdate();
+            connection.close();
+        }catch(Exception e){
+            System.out.println();
+        }
+        return "formations.xhtml?faces-redirect=true";      
+    }
+        // Used to delete user record
+
+    public void deleteFormation(int id)
+    {
+    try
+    {
+    connection = getConnection();  
+            PreparedStatement stmt = connection.prepareStatement("delete from formation where id = "+id);  
+            stmt.executeUpdate();  
+    }
+    catch(Exception ex)
+    {
+        System.out.println(ex);
     
+    }
+    
+    
+    }
 }
